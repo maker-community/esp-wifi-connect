@@ -185,6 +185,25 @@ void WifiConfigurationAp::StartAccessPoint()
             ota_url_ = ota_url;
         }
 
+        nvs_close(nvs);
+    }
+
+    // 读取SignalR Hub URL (从signalr命名空间)
+    err = nvs_open("signalr", NVS_READONLY, &nvs);
+    if (err == ESP_OK) {
+        char hub_url[256] = {0};
+        size_t hub_url_size = sizeof(hub_url);
+        err = nvs_get_str(nvs, "hub_url", hub_url, &hub_url_size);
+        if (err == ESP_OK) {
+            hub_url_ = hub_url;
+        }
+        nvs_close(nvs);
+    }
+
+    // 重新打开wifi命名空间读取剩余配置
+    err = nvs_open("wifi", NVS_READONLY, &nvs);
+    if (err == ESP_OK) {
+
         // 读取WiFi功率
         err = nvs_get_i8(nvs, "max_tx_power", &max_tx_power_);
         if (err == ESP_OK) {
@@ -523,6 +542,9 @@ void WifiConfigurationAp::StartWebServer()
             if (!this_->ota_url_.empty()) {
                 cJSON_AddStringToObject(json, "ota_url", this_->ota_url_.c_str());
             }
+            if (!this_->hub_url_.empty()) {
+                cJSON_AddStringToObject(json, "hub_url", this_->hub_url_.c_str());
+            }
             cJSON_AddNumberToObject(json, "max_tx_power", this_->max_tx_power_);
             cJSON_AddBoolToObject(json, "remember_bssid", this_->remember_bssid_);
             cJSON_AddBoolToObject(json, "sleep_mode", this_->sleep_mode_);
@@ -605,6 +627,41 @@ void WifiConfigurationAp::StartWebServer()
                 }
             }
 
+            // 提交wifi命名空间的更改
+            nvs_commit(nvs);
+            nvs_close(nvs);
+
+            // 保存SignalR Hub URL (到signalr命名空间)
+            cJSON *hub_url = cJSON_GetObjectItem(json, "hub_url");
+            if (cJSON_IsString(hub_url)) {
+                nvs_handle_t signalr_nvs;
+                err = nvs_open("signalr", NVS_READWRITE, &signalr_nvs);
+                if (err == ESP_OK) {
+                    this_->hub_url_ = hub_url->valuestring ? hub_url->valuestring : "";
+                    if (this_->hub_url_.empty()) {
+                        // 如果为空则删除key
+                        nvs_erase_key(signalr_nvs, "hub_url");
+                    } else {
+                        err = nvs_set_str(signalr_nvs, "hub_url", this_->hub_url_.c_str());
+                        if (err != ESP_OK) {
+                            ESP_LOGE(TAG, "Failed to save SignalR Hub URL: %d", err);
+                        }
+                    }
+                    nvs_commit(signalr_nvs);
+                    nvs_close(signalr_nvs);
+                } else {
+                    ESP_LOGE(TAG, "Failed to open signalr NVS: %d", err);
+                }
+            }
+
+            // 重新打开wifi命名空间保存其他配置
+            err = nvs_open("wifi", NVS_READWRITE, &nvs);
+            if (err != ESP_OK) {
+                cJSON_Delete(json);
+                httpd_resp_send_err(req, HTTPD_500_INTERNAL_SERVER_ERROR, "Failed to reopen NVS");
+                return ESP_FAIL;
+            }
+
             // 保存WiFi功率
             cJSON *max_tx_power = cJSON_GetObjectItem(json, "max_tx_power");
             if (cJSON_IsNumber(max_tx_power)) {
@@ -656,8 +713,8 @@ void WifiConfigurationAp::StartWebServer()
             httpd_resp_set_hdr(req, "Connection", "close");
             httpd_resp_send(req, "{\"success\":true}", HTTPD_RESP_USE_STRLEN);
 
-            ESP_LOGI(TAG, "Saved settings: ota_url=%s, max_tx_power=%d, remember_bssid=%d, sleep_mode=%d",
-                this_->ota_url_.c_str(), this_->max_tx_power_, this_->remember_bssid_, this_->sleep_mode_);
+            ESP_LOGI(TAG, "Saved settings: ota_url=%s, hub_url=%s, max_tx_power=%d, remember_bssid=%d, sleep_mode=%d",
+                this_->ota_url_.c_str(), this_->hub_url_.c_str(), this_->max_tx_power_, this_->remember_bssid_, this_->sleep_mode_);
             return ESP_OK;
         },
         .user_ctx = this

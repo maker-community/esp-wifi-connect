@@ -278,6 +278,15 @@
                     </div>
                 </p>
 
+                <!-- SignalR Hub URL -->
+                <p>
+                    <label for="hub_url" data-lang="hub_url">SignalR Hub URL:</label>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input type="text" id="hub_url" name="hub_url" placeholder="http://your-server/chathub" style="flex: 1;">
+                        <button type="button" onclick="clearHubUrl()" style="padding: 5px 10px; border: 1px solid #ccc; border-radius: 3px; background-color: #f0f0f0; cursor: pointer;">❌</button>
+                    </div>
+                </p>
+
                 <!-- Max TX Power -->
                 <p style="display: flex; align-items: center; gap: 10px;">
                     <label for="max_tx_power" data-lang="max_tx_power" style="white-space: nowrap;">Wi-Fi Max TX Power:</label>
@@ -341,6 +350,7 @@
                 wifi_tab: 'تكوين Wi-Fi',
                 advanced_tab: 'خيارات متقدمة',
                 ota_url: 'عنوان OTA مخصص:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'أقصى قوة إرسال Wi-Fi:',
                 remember_bssid: 'تذكر BSSID عند الاتصال بـ Wi-Fi',
                 sleep_mode: 'تمكين وضع السكون',
@@ -359,6 +369,7 @@
                 wifi_tab: 'Конфигурация на Wi-Fi',
                 advanced_tab: 'Разширени',
                 ota_url: 'Персонализиран OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Макс. мощност на предаване Wi-Fi:',
                 remember_bssid: 'Запомни BSSID при свързване към Wi-Fi',
                 sleep_mode: 'Активиране на режим на заспиване',
@@ -377,6 +388,7 @@
                 wifi_tab: 'Configuració Wi-Fi',
                 advanced_tab: 'Avançat',
                 ota_url: 'URL OTA personalitzat:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Potència màxima TX Wi-Fi:',
                 remember_bssid: 'Recordar BSSID en connectar a Wi-Fi',
                 sleep_mode: 'Activar mode de suspensió',
@@ -395,6 +407,7 @@
                 wifi_tab: 'Konfigurace Wi-Fi',
                 advanced_tab: 'Pokročilé',
                 ota_url: 'Vlastní OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Max. vysílací výkon Wi-Fi:',
                 remember_bssid: 'Pamatovat si BSSID při připojení k Wi-Fi',
                 sleep_mode: 'Povolit režim spánku',
@@ -413,6 +426,7 @@
                 wifi_tab: 'Wi-Fi-konfiguration',
                 advanced_tab: 'Avanceret',
                 ota_url: 'Brugerdefineret OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi maks. TX-effekt:',
                 remember_bssid: 'Husk BSSID ved forbindelse til Wi-Fi',
                 sleep_mode: 'Aktiver dvaletilstand',
@@ -431,6 +445,7 @@
                 wifi_tab: 'Wi-Fi-Konfiguration',
                 advanced_tab: 'Erweitert',
                 ota_url: 'Benutzerdefinierte OTA-URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi Max. Sendeleistung:',
                 remember_bssid: 'BSSID beim Verbinden mit Wi-Fi merken',
                 sleep_mode: 'Schlafmodus aktivieren',
@@ -449,6 +464,7 @@
                 wifi_tab: 'Διαμόρφωση Wi-Fi',
                 advanced_tab: 'Για προχωρημένους',
                 ota_url: 'Προσαρμοσμένη διεύθυνση OTA:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Μέγιστη ισχύς μετάδοσης Wi-Fi:',
                 remember_bssid: 'Απομνημόνευση BSSID κατά τη σύνδεση σε Wi-Fi',
                 sleep_mode: 'Ενεργοποίηση λειτουργίας αναστολής',
@@ -467,6 +483,7 @@
                 wifi_tab: 'Wi-Fi Config',
                 advanced_tab: 'Advanced',
                 ota_url: 'Custom OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi Max TX Power:',
                 remember_bssid: 'Remember BSSID when connecting to Wi-Fi',
                 sleep_mode: 'Enable Sleep Mode',
@@ -485,6 +502,7 @@
                 wifi_tab: 'Configuración Wi-Fi',
                 advanced_tab: 'Avanzado',
                 ota_url: 'URL OTA personalizada:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Potencia máxima TX Wi-Fi:',
                 remember_bssid: 'Recordar BSSID al conectarse a Wi-Fi',
                 sleep_mode: 'Activar modo de suspensión',
@@ -503,7 +521,8 @@
                 wifi_tab: 'پیکربندی Wi-Fi',
                 advanced_tab: 'پیشرفته',
                 ota_url: 'آدرس OTA سفارشی:',
-                max_tx_power: 'حداکثر قدرت انتقال Wi-Fi:',
+                hub_url: 'SignalR Hub URL:',
+                max_tx_power: 'حداکثر قدرت انتقال Wi-Fi',
                 remember_bssid: 'به خاطر سپردن BSSID هنگام اتصال به Wi-Fi',
                 sleep_mode: 'فعال کردن حالت خواب',
                 save: 'ذخیره'
@@ -521,6 +540,7 @@
                 wifi_tab: 'Wi-Fi-määritys',
                 advanced_tab: 'Lisäasetukset',
                 ota_url: 'Mukautettu OTA-osoite:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi maks. lähetysteho:',
                 remember_bssid: 'Muista BSSID yhdistettäessä Wi-Fi-verkkoon',
                 sleep_mode: 'Ota lepotila käyttöön',
@@ -539,6 +559,7 @@
                 wifi_tab: 'Pagsasaayos ng Wi-Fi',
                 advanced_tab: 'Advanced',
                 ota_url: 'Custom OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi Max TX Power:',
                 remember_bssid: 'Tandaan ang BSSID kapag kumokonekta sa Wi-Fi',
                 sleep_mode: 'I-enable ang Sleep Mode',
@@ -557,6 +578,7 @@
                 wifi_tab: 'Configuration Wi-Fi',
                 advanced_tab: 'Avancé',
                 ota_url: 'URL OTA personnalisée:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Puissance TX maximale Wi-Fi:',
                 remember_bssid: 'Mémoriser le BSSID lors de la connexion au Wi-Fi',
                 sleep_mode: 'Activer le mode veille',
@@ -575,6 +597,7 @@
                 wifi_tab: 'הגדרות Wi-Fi',
                 advanced_tab: 'מתקדם',
                 ota_url: 'כתובת OTA מותאמת אישית:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'הספק שידור מקסימלי Wi-Fi:',
                 remember_bssid: 'זכור BSSID בעת התחברות ל-Wi-Fi',
                 sleep_mode: 'הפעל מצב שינה',
@@ -593,6 +616,7 @@
                 wifi_tab: 'Wi-Fi कॉन्फ़िगरेशन',
                 advanced_tab: 'उन्नत',
                 ota_url: 'कस्टम OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi अधिकतम TX पावर:',
                 remember_bssid: 'Wi-Fi से कनेक्ट करते समय BSSID याद रखें',
                 sleep_mode: 'स्लीप मोड सक्षम करें',
@@ -611,6 +635,7 @@
                 wifi_tab: 'Konfiguracija Wi-Fi',
                 advanced_tab: 'Napredno',
                 ota_url: 'Prilagođeni OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi maksimalna TX snaga:',
                 remember_bssid: 'Zapamti BSSID pri povezivanju na Wi-Fi',
                 sleep_mode: 'Omogući način spavanja',
@@ -629,6 +654,7 @@
                 wifi_tab: 'Wi-Fi konfiguráció',
                 advanced_tab: 'Speciális',
                 ota_url: 'Egyéni OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi max. adási teljesítmény:',
                 remember_bssid: 'BSSID megjegyzése Wi-Fi csatlakozáskor',
                 sleep_mode: 'Alvó mód engedélyezése',
@@ -647,6 +673,7 @@
                 wifi_tab: 'Konfigurasi Wi-Fi',
                 advanced_tab: 'Lanjutan',
                 ota_url: 'URL OTA Kustom:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Daya Pancar Maks Wi-Fi:',
                 remember_bssid: 'Ingat BSSID saat menghubungkan ke Wi-Fi',
                 sleep_mode: 'Aktifkan Mode Tidur',
@@ -665,6 +692,7 @@
                 wifi_tab: 'Configurazione Wi-Fi',
                 advanced_tab: 'Avanzate',
                 ota_url: 'URL OTA personalizzato:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Potenza TX massima Wi-Fi:',
                 remember_bssid: 'Ricorda BSSID durante la connessione al Wi-Fi',
                 sleep_mode: 'Abilita modalità sospensione',
@@ -683,6 +711,7 @@
                 wifi_tab: 'Wi-Fi設定',
                 advanced_tab: '詳細設定',
                 ota_url: 'カスタムOTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi最大送信電力:',
                 remember_bssid: 'Wi-Fi接続時にBSSIDを記憶する',
                 sleep_mode: 'スリープモードを有効にする',
@@ -701,6 +730,7 @@
                 wifi_tab: 'Wi-Fi 구성',
                 advanced_tab: '고급',
                 ota_url: '사용자 정의 OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi 최대 송신 전력:',
                 remember_bssid: 'Wi-Fi 연결 시 BSSID 기억',
                 sleep_mode: '절전 모드 활성화',
@@ -719,6 +749,7 @@
                 wifi_tab: 'Konfigurasi Wi-Fi',
                 advanced_tab: 'Lanjutan',
                 ota_url: 'URL OTA Tersuai:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Kuasa TX Maksimum Wi-Fi:',
                 remember_bssid: 'Ingat BSSID semasa menyambung ke Wi-Fi',
                 sleep_mode: 'Dayakan Mod Tidur',
@@ -737,6 +768,7 @@
                 wifi_tab: 'Wi-Fi-konfigurasjon',
                 advanced_tab: 'Avansert',
                 ota_url: 'Egendefinert OTA-URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi maks. sendeeffekt:',
                 remember_bssid: 'Husk BSSID ved tilkobling til Wi-Fi',
                 sleep_mode: 'Aktiver hvilemodus',
@@ -755,6 +787,7 @@
                 wifi_tab: 'Wi-Fi-configuratie',
                 advanced_tab: 'Geavanceerd',
                 ota_url: 'Aangepaste OTA-URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi max. zendvermogen:',
                 remember_bssid: 'BSSID onthouden bij verbinden met Wi-Fi',
                 sleep_mode: 'Slaapmodus inschakelen',
@@ -773,6 +806,7 @@
                 wifi_tab: 'Konfiguracja Wi-Fi',
                 advanced_tab: 'Zaawansowane',
                 ota_url: 'Niestandardowy adres URL OTA:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Maksymalna moc nadawania Wi-Fi:',
                 remember_bssid: 'Zapamiętaj BSSID podczas łączenia z Wi-Fi',
                 sleep_mode: 'Włącz tryb uśpienia',
@@ -791,6 +825,7 @@
                 wifi_tab: 'Configuração Wi-Fi',
                 advanced_tab: 'Avançado',
                 ota_url: 'URL OTA personalizado:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Potência TX máxima Wi-Fi:',
                 remember_bssid: 'Lembrar BSSID ao ligar ao Wi-Fi',
                 sleep_mode: 'Ativar modo de suspensão',
@@ -809,6 +844,7 @@
                 wifi_tab: 'Configurare Wi-Fi',
                 advanced_tab: 'Avansat',
                 ota_url: 'URL OTA personalizat:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Putere maximă TX Wi-Fi:',
                 remember_bssid: 'Reține BSSID la conectarea la Wi-Fi',
                 sleep_mode: 'Activează modul de repaus',
@@ -827,6 +863,7 @@
                 wifi_tab: 'Настройка Wi-Fi',
                 advanced_tab: 'Дополнительно',
                 ota_url: 'Пользовательский URL OTA:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Макс. мощность передачи Wi-Fi:',
                 remember_bssid: 'Запомнить BSSID при подключении к Wi-Fi',
                 sleep_mode: 'Включить режим сна',
@@ -845,6 +882,7 @@
                 wifi_tab: 'Konfigurácia Wi-Fi',
                 advanced_tab: 'Pokročilé',
                 ota_url: 'Vlastná URL OTA:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Max. vysielací výkon Wi-Fi:',
                 remember_bssid: 'Zapamätať si BSSID pri pripojení k Wi-Fi',
                 sleep_mode: 'Povoliť režim spánku',
@@ -863,6 +901,7 @@
                 wifi_tab: 'Konfiguracija Wi-Fi',
                 advanced_tab: 'Napredno',
                 ota_url: 'Prilagojen URL OTA:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi maks. oddajna moč:',
                 remember_bssid: 'Zapomni si BSSID ob povezovanju na Wi-Fi',
                 sleep_mode: 'Omogoči način spanja',
@@ -881,6 +920,7 @@
                 wifi_tab: 'Конфигурација Wi-Fi',
                 advanced_tab: 'Напредно',
                 ota_url: 'Прилагођени OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi максимална снага преноса:',
                 remember_bssid: 'Запамти BSSID приликом повезивања на Wi-Fi',
                 sleep_mode: 'Омогући режим спавања',
@@ -899,6 +939,7 @@
                 wifi_tab: 'Wi-Fi-konfiguration',
                 advanced_tab: 'Avancerat',
                 ota_url: 'Anpassad OTA-URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi max. sändningseffekt:',
                 remember_bssid: 'Kom ihåg BSSID vid anslutning till Wi-Fi',
                 sleep_mode: 'Aktivera viloläge',
@@ -917,6 +958,7 @@
                 wifi_tab: 'การกำหนดค่า Wi-Fi',
                 advanced_tab: 'ขั้นสูง',
                 ota_url: 'URL OTA กำหนดเอง:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'กำลังส่งสูงสุด Wi-Fi:',
                 remember_bssid: 'จำ BSSID เมื่อเชื่อมต่อกับ Wi-Fi',
                 sleep_mode: 'เปิดใช้งานโหมดสลีป',
@@ -935,6 +977,7 @@
                 wifi_tab: 'Wi-Fi Yapılandırması',
                 advanced_tab: 'Gelişmiş',
                 ota_url: 'Özel OTA URL:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Wi-Fi Maks. İletim Gücü:',
                 remember_bssid: 'Wi-Fi\'ye bağlanırken BSSID\'yi hatırla',
                 sleep_mode: 'Uyku Modunu Etkinleştir',
@@ -953,6 +996,7 @@
                 wifi_tab: 'Налаштування Wi-Fi',
                 advanced_tab: 'Додатково',
                 ota_url: 'Користувацька URL-адреса OTA:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Макс. потужність передачі Wi-Fi:',
                 remember_bssid: 'Запам\'ятати BSSID при підключенні до Wi-Fi',
                 sleep_mode: 'Увімкнути режим сну',
@@ -971,6 +1015,7 @@
                 wifi_tab: 'Cấu hình Wi-Fi',
                 advanced_tab: 'Tùy chọn nâng cao',
                 ota_url: 'Địa chỉ OTA tùy chỉnh:',
+                hub_url: 'SignalR Hub URL:',
                 max_tx_power: 'Công suất phát Wi-Fi tối đa:',
                 remember_bssid: 'Ghi nhớ BSSID khi kết nối với Wi-Fi',
                 sleep_mode: 'Bật chế độ ngủ',
@@ -989,6 +1034,7 @@
                 wifi_tab: 'Wi-Fi 配置',
                 advanced_tab: '高级选项',
                 ota_url: '自定义 OTA 地址:',
+                hub_url: 'SignalR 服务地址:',
                 max_tx_power: 'Wi-Fi 最大发射功率:',
                 remember_bssid: '连接 Wi-Fi 时记住 BSSID',
                 sleep_mode: '启用睡眠模式',
@@ -1007,6 +1053,7 @@
                 wifi_tab: 'Wi-Fi 設定',
                 advanced_tab: '進階選項',
                 ota_url: '自定義 OTA 位址:',
+                hub_url: 'SignalR 服務地址:',
                 max_tx_power: 'Wi-Fi 最大發射功率:',
                 remember_bssid: '連接 Wi-Fi 時記住 BSSID',
                 sleep_mode: '啟用睡眠模式',
@@ -1333,6 +1380,7 @@
 
             const config = {
                 ota_url: document.getElementById('ota_url').value,
+                hub_url: document.getElementById('hub_url').value,
                 max_tx_power: parseInt(document.getElementById('max_tx_power').value),
                 remember_bssid: document.getElementById('remember_bssid').checked,
                 sleep_mode: document.getElementById('sleep_mode').checked
@@ -1406,6 +1454,9 @@
                 if (data.ota_url) {
                     document.getElementById('ota_url').value = data.ota_url;
                 }
+                if (data.hub_url) {
+                    document.getElementById('hub_url').value = data.hub_url;
+                }
                 if (data.max_tx_power) {
                     document.getElementById('max_tx_power').value = data.max_tx_power;
                 }
@@ -1425,6 +1476,13 @@
          */
         function clearOtaUrl() {
             document.getElementById('ota_url').value = '';
+        }
+
+        /**
+         * Clear SignalR Hub URL input field
+         */
+        function clearHubUrl() {
+            document.getElementById('hub_url').value = '';
         }
 
         // ========== Initialization ==========

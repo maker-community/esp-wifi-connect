@@ -68,6 +68,7 @@ private:
 
     // 高级配置项
     std::string ota_url_;
+    std::string hub_url_;  // SignalR Hub URL
     int8_t max_tx_power_;
     bool remember_bssid_;
     bool sleep_mode_;
