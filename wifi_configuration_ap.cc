@@ -200,6 +200,33 @@ void WifiConfigurationAp::StartAccessPoint()
         nvs_close(nvs);
     }
 
+    // 读取Keycloak配置 (从keycloak命名空间)
+    err = nvs_open("keycloak", NVS_READONLY, &nvs);
+    if (err == ESP_OK) {
+        char server_url[256] = {0};
+        size_t server_url_size = sizeof(server_url);
+        err = nvs_get_str(nvs, "server_url", server_url, &server_url_size);
+        if (err == ESP_OK) {
+            keycloak_server_url_ = server_url;
+        }
+
+        char realm[128] = {0};
+        size_t realm_size = sizeof(realm);
+        err = nvs_get_str(nvs, "realm", realm, &realm_size);
+        if (err == ESP_OK) {
+            keycloak_realm_ = realm;
+        }
+
+        char client_id[128] = {0};
+        size_t client_id_size = sizeof(client_id);
+        err = nvs_get_str(nvs, "client_id", client_id, &client_id_size);
+        if (err == ESP_OK) {
+            keycloak_client_id_ = client_id;
+        }
+
+        nvs_close(nvs);
+    }
+
     // 重新打开wifi命名空间读取剩余配置
     err = nvs_open("wifi", NVS_READONLY, &nvs);
     if (err == ESP_OK) {
@@ -545,6 +572,15 @@ void WifiConfigurationAp::StartWebServer()
             if (!this_->hub_url_.empty()) {
                 cJSON_AddStringToObject(json, "hub_url", this_->hub_url_.c_str());
             }
+            if (!this_->keycloak_server_url_.empty()) {
+                cJSON_AddStringToObject(json, "keycloak_server_url", this_->keycloak_server_url_.c_str());
+            }
+            if (!this_->keycloak_realm_.empty()) {
+                cJSON_AddStringToObject(json, "keycloak_realm", this_->keycloak_realm_.c_str());
+            }
+            if (!this_->keycloak_client_id_.empty()) {
+                cJSON_AddStringToObject(json, "keycloak_client_id", this_->keycloak_client_id_.c_str());
+            }
             cJSON_AddNumberToObject(json, "max_tx_power", this_->max_tx_power_);
             cJSON_AddBoolToObject(json, "remember_bssid", this_->remember_bssid_);
             cJSON_AddBoolToObject(json, "sleep_mode", this_->sleep_mode_);
@@ -651,6 +687,57 @@ void WifiConfigurationAp::StartWebServer()
                     nvs_close(signalr_nvs);
                 } else {
                     ESP_LOGE(TAG, "Failed to open signalr NVS: %d", err);
+                }
+            }
+
+            // 保存Keycloak配置 (到keycloak命名空间)
+            cJSON *keycloak_server_url = cJSON_GetObjectItem(json, "keycloak_server_url");
+            cJSON *keycloak_realm = cJSON_GetObjectItem(json, "keycloak_realm");
+            cJSON *keycloak_client_id = cJSON_GetObjectItem(json, "keycloak_client_id");
+            if (cJSON_IsString(keycloak_server_url) || cJSON_IsString(keycloak_realm) || cJSON_IsString(keycloak_client_id)) {
+                nvs_handle_t keycloak_nvs;
+                err = nvs_open("keycloak", NVS_READWRITE, &keycloak_nvs);
+                if (err == ESP_OK) {
+                    if (cJSON_IsString(keycloak_server_url)) {
+                        this_->keycloak_server_url_ = keycloak_server_url->valuestring ? keycloak_server_url->valuestring : "";
+                        if (this_->keycloak_server_url_.empty()) {
+                            nvs_erase_key(keycloak_nvs, "server_url");
+                        } else {
+                            err = nvs_set_str(keycloak_nvs, "server_url", this_->keycloak_server_url_.c_str());
+                            if (err != ESP_OK) {
+                                ESP_LOGE(TAG, "Failed to save Keycloak server_url: %d", err);
+                            }
+                        }
+                    }
+
+                    if (cJSON_IsString(keycloak_realm)) {
+                        this_->keycloak_realm_ = keycloak_realm->valuestring ? keycloak_realm->valuestring : "";
+                        if (this_->keycloak_realm_.empty()) {
+                            nvs_erase_key(keycloak_nvs, "realm");
+                        } else {
+                            err = nvs_set_str(keycloak_nvs, "realm", this_->keycloak_realm_.c_str());
+                            if (err != ESP_OK) {
+                                ESP_LOGE(TAG, "Failed to save Keycloak realm: %d", err);
+                            }
+                        }
+                    }
+
+                    if (cJSON_IsString(keycloak_client_id)) {
+                        this_->keycloak_client_id_ = keycloak_client_id->valuestring ? keycloak_client_id->valuestring : "";
+                        if (this_->keycloak_client_id_.empty()) {
+                            nvs_erase_key(keycloak_nvs, "client_id");
+                        } else {
+                            err = nvs_set_str(keycloak_nvs, "client_id", this_->keycloak_client_id_.c_str());
+                            if (err != ESP_OK) {
+                                ESP_LOGE(TAG, "Failed to save Keycloak client_id: %d", err);
+                            }
+                        }
+                    }
+
+                    nvs_commit(keycloak_nvs);
+                    nvs_close(keycloak_nvs);
+                } else {
+                    ESP_LOGE(TAG, "Failed to open keycloak NVS: %d", err);
                 }
             }
 

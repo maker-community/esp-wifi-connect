@@ -69,6 +69,9 @@ private:
     // 高级配置项
     std::string ota_url_;
     std::string hub_url_;  // SignalR Hub URL
+    std::string keycloak_server_url_;
+    std::string keycloak_realm_;
+    std::string keycloak_client_id_;
     int8_t max_tx_power_;
     bool remember_bssid_;
     bool sleep_mode_;
